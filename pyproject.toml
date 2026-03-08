@@ -1,0 +1,10 @@
+[project]
+name = "neatone"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.13"
+dependencies = [
+    "neat-python>=2.0.0",
+    "numpy>=2.4.2",
+    "pygame>=2.6.1",
+]

@@ -5,6 +5,7 @@ import neat
 import random as rnd
 import numpy as np
 import math
+import pygame as pg
 
 HEIGHT = 800
 WIDTH = 600
@@ -25,6 +26,19 @@ class Creature:
         distance_l2norm = np.linalg.norm([dx,dy])
         angle = math.atan2(dy, dx)
         return distance_l2norm, angle
+
+    def update(self, food_position):
+        inputs = self.get_inputs(food_position)
+        output = self.net.activate(inputs)
+        self.speed = output[0]
+        self.angle = output[1]
+        x = math.cos(self.angle) * self.speed
+        y = math.sin(self.angle) * self.speed
+        self.position = self.position[0] + x, self.position[1] + y
+
+    def draw(self,surface):
+        pg.draw.circle(surface, (255,255,255), (int(self.position[0]), int(self.position[1])), 10)
+
 
 
 

@@ -70,6 +70,9 @@ def eval_genomes(genomes, config):
             if math.dist(creature.position, food_positions) < 20:
                 genome.fitness = 200 - c
                 break
+        else:
+            genome.fitness = 100 / math.dist(creature.position, food_positions)
+
 
 
 def main():
@@ -83,7 +86,7 @@ def main():
     stats = neat.StatisticsReporter()
     population.add_reporter(stats)
     population.run(eval_genomes, n=50)
-    stats.save_genome_fitness()
+    stats.save_genome_fitness(delimiter=",")
 
 
 
